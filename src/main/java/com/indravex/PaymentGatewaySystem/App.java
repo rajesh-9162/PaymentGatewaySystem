@@ -17,7 +17,7 @@ public class App {
 
 	        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-	        System.out.println("===== FACTORY PATTERN =====");
+	     
 
 	        PaymentProcessorFactory factory = context.getBean(PaymentProcessorFactory.class);
 
@@ -27,7 +27,7 @@ public class App {
 
 	        System.out.println();
 
-	        System.out.println("===== TEMPLATE PATTERN =====");
+	        
 
 	        UPIPaymentTemplate upiTemplate = context.getBean(UPIPaymentTemplate.class);
 
@@ -47,7 +47,7 @@ public class App {
 
 	        System.out.println();
 
-	        System.out.println("===== DEPENDENCY INJECTION =====");
+	        
 
 	        PaymentController controller = context.getBean(PaymentController.class);
 
@@ -55,7 +55,7 @@ public class App {
 
 	        System.out.println();
 
-	        System.out.println("===== QUALIFIER =====");
+	        
 
 	        SMSAlertService sms = context.getBean(SMSAlertService.class);
 
