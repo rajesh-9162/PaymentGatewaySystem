@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import com.indravex.PaymentGatewaySystem.PaymentService.PaymentService;
 
+
 @Controller
 public class PaymentController {
 
@@ -12,6 +13,10 @@ public class PaymentController {
 	private PaymentService paymentService;
 
 	public void execute() {
-		paymentService.makePayment();
+		paymentService.makePayment("upi",5000);
+		System.out.println();
+		paymentService.makePayment("credit", 5000);
+		System.out.println();
+		paymentService.makePayment("wallet", 1500);
 	}
 }

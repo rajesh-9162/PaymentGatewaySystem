@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class AuditService {
 
 	public void log() {
-		System.out.println("AUDIT LOG CREATED ");
+		System.out.println("Audit Completed");
 	}
 }

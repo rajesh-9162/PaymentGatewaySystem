@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 public class TransactionRepository {
 
 	public void saveTransaction() {
-		System.out.println("Transaction Saved In Database");
+		System.out.println("Transaction Saved");
 	}
 }

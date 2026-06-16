@@ -5,11 +5,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.indravex.PaymentGatewaySystem.payment.service.PaymentProcessor;
-import com.indravex.PaymentGatewaySystem.payment.service.impl.CreditCardPayment;
-import com.indravex.PaymentGatewaySystem.payment.service.impl.NetBankingPayment;
-import com.indravex.PaymentGatewaySystem.payment.service.impl.UPIPayment;
-import com.indravex.PaymentGatewaySystem.payment.service.impl.WalletPayment;
+import com.indravex.PaymentGatewaySystem.processor.service.PaymentProcessor;
+import com.indravex.PaymentGatewaySystem.processor.service.impl.CreditCardPayment;
+import com.indravex.PaymentGatewaySystem.processor.service.impl.NetBankingPayment;
+import com.indravex.PaymentGatewaySystem.processor.service.impl.UPIPayment;
+import com.indravex.PaymentGatewaySystem.processor.service.impl.WalletPayment;
 
 @Component
 public class PaymentProcessorFactory {

@@ -1,38 +1,54 @@
 package com.indravex.PaymentGatewaySystem.PaymentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Service;
 
+import com.indravex.PaymentGatewaySystem.factory.PaymentProcessorFactory;
+import com.indravex.PaymentGatewaySystem.gateway.service.PaymentGateway;
 import com.indravex.PaymentGatewaySystem.notification.service.NotificationService;
+import com.indravex.PaymentGatewaySystem.processor.service.PaymentProcessor;
 import com.indravex.PaymentGatewaySystem.repository.TransactionRepository;
 
 
 @Service
 public class PaymentService {
-	
+
 	private TransactionRepository transactionRepository;
 	private AuditService auditService;
-	
+
 	@Autowired
-    private NotificationService notificationService;
-	
+	@Qualifier("smsNotificationService")
+	private NotificationService notificationService;
+
 	@Autowired
 	public PaymentService(TransactionRepository transactionRepository) {
 		this.transactionRepository = transactionRepository;
 	}
-	
+
 	@Autowired
 	public void setAuditService(AuditService auditService) {
 		this.auditService = auditService;
 	}
 
-	 public void makePayment() {
+	@Autowired
+	private PaymentGateway razorpayGateway;
 
-	        transactionRepository.saveTransaction();
+	@Autowired
+	private PaymentProcessorFactory factory;
 
-	        auditService.log();
+	public void makePayment(String type, double amount) {
 
-	        notificationService.sendNotification(
-	                "Payment Successful");
-	    }
+		razorpayGateway.connect();
+
+		PaymentProcessor processor = factory.getPaymentProcessor(type);
+		processor.processPayment(amount);
+
+		transactionRepository.saveTransaction();
+
+		auditService.log();
+
+		notificationService.sendNotification("Payment Successful");
+	}
 }
